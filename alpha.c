@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include <assert.h>
+#include <stdlib.h>
 
-int isAlphabetic(char* str);
 int isAlphabetic(char* str) {
 	if (strlen(str) < 2)
 		return 1;
@@ -14,8 +13,7 @@ int isAlphabetic(char* str) {
 	return 1;
 }
 
-int main() {
-
+/* Asserts
 	assert(isAlphabetic("a"));
 	assert(isAlphabetic("m"));
 	assert(isAlphabetic("z"));
@@ -23,10 +21,9 @@ int main() {
 	assert(isAlphabetic("alz"));
 	assert(isAlphabetic("bzz"));
 	assert(!isAlphabetic("ba"));
-	assert(!isAlphabetic("alphabet"));
+	assert(!isAlphabetic("alphabet")); */
 
-	int totalcount = 0;
-	int alphacount = 0;
+int main() {
 
 	FILE* in;
 	in = fopen("words.txt", "r");
@@ -35,7 +32,19 @@ int main() {
 		exit(1);
 	}
 
-	printf("Alphabetical words: %d\n", alphacount);
-	printf("Total words: %d\n", totalcount);
+	int totalcount, alphacount;
+
+	char word[100];
+	while (fscanf(in, "%s", word) != EOF) {
+		int isAlpha = isAlphabetic(word);
+		alphacount += isAlpha;
+		if (isAlpha)
+			printf("%s\n", word);
+		totalcount ++;
+	}
+
+	float percent = (alphacount / totalcount) * 100;
+	printf("\n");
+	printf("%d are alphabetical out of %d (%G percent).\n", alphacount, totalcount, percent);
 
 }
