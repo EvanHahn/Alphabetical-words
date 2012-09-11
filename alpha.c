@@ -13,16 +13,6 @@ int isAlphabetic(char* str) {
 	return 1;
 }
 
-/* Asserts
-	assert(isAlphabetic("a"));
-	assert(isAlphabetic("m"));
-	assert(isAlphabetic("z"));
-	assert(isAlphabetic("abc"));
-	assert(isAlphabetic("alz"));
-	assert(isAlphabetic("bzz"));
-	assert(!isAlphabetic("ba"));
-	assert(!isAlphabetic("alphabet")); */
-
 int main() {
 
 	FILE* in;
